@@ -1,27 +1,243 @@
+//Functions for basic arithmetic
+
 function add(a,b) {
-    return a + b;
+    return parseInt(a) + parseInt(b);
 }
 function subtract(a,b) {
-    return a - b;
+    return parseInt(a) - parseInt(b);
 }
 function multiply(a,b) {
-    return a * b;
+    return parseInt(a) * parseInt(b);
 }
 function divide(a,b) {
-    return a / b;
+    return parseInt(a) / parseInt(b);
 }
+
+//Function to call specific arithmetic operators depending on input
+
 function operate(operator, a, b) {
+    console.log(a, operator, b)
     if (operator == '+'){
-        return add(a,b);
+        firstNumber = add(a,b);
+        display.textContent = firstNumber;
+        return;
     }
     else if (operator == '-'){
-        return subtract(a,b);
+        firstNumber = subtract(a,b);
+        display.textContent = firstNumber;
+        return;
     }
     else if (operator == '*'){
-        return multiply(a,b);
+        firstNumber = multiply(a,b);
+        display.textContent = firstNumber;
+        return;
     }
     else if (operator == '/'){
-        return divide(a,b);
+        if (b === 0 || b === '0'){
+            display.textContent = 'ERROR'
+        }
+        else {
+        firstNumber = divide(a,b);
+        display.textContent = firstNumber;
+        }
+        return;
+    }
+}
+
+//Variables connected to calculator buttons
+
+const one = document.querySelector(".one");
+const two = document.querySelector(".two");
+const three = document.querySelector(".three");
+const four = document.querySelector(".four");
+const five = document.querySelector(".five");
+const six = document.querySelector(".six");
+const seven = document.querySelector(".seven");
+const eight = document.querySelector(".eight");
+const nine = document.querySelector(".nine");
+const zero = document.querySelector(".zero");
+const plus = document.querySelector(".plus");
+const minus = document.querySelector(".minus");
+const star = document.querySelector(".star");
+const slash = document.querySelector(".slash");
+const clear = document.querySelector(".clear");
+const equals = document.querySelector(".equals");
+const display = document.querySelector(".display");
+
+display.textContent = '0'; //Set default display to zero
+let displayContent = '';
+
+//functions to add numbers to display
+
+function pressOne() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '1';
+    displayContent = display.textContent;
+}function pressTwo() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '2';
+    displayContent = display.textContent;
+}function pressThree() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '3';
+    displayContent = display.textContent;
+}function pressFour() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '4';
+    displayContent = display.textContent;
+}function pressFive() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '5';
+    displayContent = display.textContent;
+}function pressSix() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '6';
+    displayContent = display.textContent;
+}function pressSeven() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '7';
+    displayContent = display.textContent;
+}function pressEight() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '8';
+    displayContent = display.textContent;
+}function pressNine() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '9';
+    displayContent = display.textContent;
+}function pressZero() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if(display.textContent==='0'){display.textContent=''}
+    if(afterEquals){pressClear()}
+    display.textContent = displayContent + '0';
+    displayContent = display.textContent;
+}function pressClear() {
+    firstNumber = '';
+    secondNumber = '';
+    operator = '';
+    display.textContent = '0';
+    displayContent = '';
+    afterEquals = false;
+}
+
+//listeners to call display functions when buttons are pressed
+
+one.addEventListener('click', ()=>pressOne());
+two.addEventListener('click', ()=>pressTwo());
+three.addEventListener('click', ()=>pressThree());
+four.addEventListener('click', ()=>pressFour());
+five.addEventListener('click', ()=>pressFive());
+six.addEventListener('click', ()=>pressSix());
+seven.addEventListener('click', ()=>pressSeven());
+eight.addEventListener('click', ()=>pressEight());
+nine.addEventListener('click', ()=>pressNine());
+zero.addEventListener('click', ()=>pressZero());
+clear.addEventListener('click', ()=>pressClear());
+
+//variables for use in operating functions
+
+let firstNumber = '';
+let secondNumber = '';
+let operator = '';
+let afterEquals = false;
+
+//functions for managing variables and display when operator is pressed. 
+
+function pressPlus() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if (afterEquals) {//do nothing
+    }
+    else if(firstNumber !== '') {
+        secondNumber = display.textContent;
+        operate(operator, firstNumber, secondNumber);
+    }
+    else if(firstNumber === ''){
+        firstNumber = displayContent;;
+    }
+    secondNumber = '';
+    displayContent = '';
+    operator = '+';
+    afterEquals = false;
+}
+function pressMinus() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if (afterEquals) {//do nothing
+    }
+    else if(firstNumber !== '') {
+        secondNumber = display.textContent;
+        operate(operator, firstNumber, secondNumber);
+    }
+    else if(firstNumber === ''){
+        firstNumber = displayContent;
+    }
+    secondNumber = '';
+    displayContent = '';
+    operator = '-';
+    afterEquals = false;
+}
+function pressStar() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if (afterEquals) {//do nothing
+    }
+    else if(firstNumber !== '') {
+        secondNumber = display.textContent;
+        operate(operator, firstNumber, secondNumber);
+    }
+    else if(firstNumber === ''){
+        firstNumber = displayContent;
+    }
+    secondNumber = '';
+        displayContent = '';
+    operator = '*';
+    afterEquals = false;
+}
+function pressSlash() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if (afterEquals) {//do nothing
+    }
+    else if(firstNumber !== '') {
+        secondNumber = display.textContent;
+        operate(operator, firstNumber, secondNumber);
+    }
+    else if(firstNumber === ''){
+        firstNumber = displayContent;
+    }
+    secondNumber = '';
+    displayContent = '';
+    operator = '/';
+    afterEquals = false;
+}
+
+function pressEquals() {
+    if (display.textContent==='ERROR'){pressClear()}
+    if (firstNumber == ''){firstNumber = display.textContent;}
+    else if(secondNumber == ''){secondNumber = display.textContent;}
+    operate(operator, firstNumber, secondNumber);
+    displayContent = '';
+    afterEquals = true;
     }
 
-}
+//add listeners to operator buttons
+
+plus.addEventListener('click', () => pressPlus());
+minus.addEventListener('click', () => pressMinus());
+star.addEventListener('click', () => pressStar());
+slash.addEventListener('click', () => pressSlash());
+equals.addEventListener('click', () => pressEquals());
