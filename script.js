@@ -75,59 +75,69 @@ function pressOne() {
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '1';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressTwo() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '2';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressThree() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '3';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressFour() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '4';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressFive() {
     if (display.textContent==='ERROR'){pressClear()}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '5';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressSix() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '6';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressSeven() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '7';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressEight() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '8';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressNine() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '9';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressZero() {
     if (display.textContent==='ERROR'){pressClear()}
     if(display.textContent==='0'){display.textContent=''}
     if(afterEquals){pressClear()}
     display.textContent = displayContent + '0';
     displayContent = display.textContent;
+    afterOperand = false;
 }function pressClear() {
     firstNumber = '';
     secondNumber = '';
@@ -135,6 +145,7 @@ function pressOne() {
     display.textContent = '0';
     displayContent = '';
     afterEquals = false;
+    afterOperand = false;
 }
 
 //listeners to call display functions when buttons are pressed
@@ -157,28 +168,30 @@ let firstNumber = '';
 let secondNumber = '';
 let operator = '';
 let afterEquals = false;
+let afterOperand = false;
 
 //functions for managing variables and display when operator is pressed. 
 
 function pressPlus() {
     if (display.textContent==='ERROR'){pressClear()}
-    if (afterEquals) {//do nothing
+    if (afterEquals || afterOperand) {//do nothing
     }
     else if(firstNumber !== '') {
         secondNumber = display.textContent;
         operate(operator, firstNumber, secondNumber);
     }
     else if(firstNumber === ''){
-        firstNumber = displayContent;;
+        firstNumber = displayContent;
     }
     secondNumber = '';
     displayContent = '';
     operator = '+';
     afterEquals = false;
+    afterOperand = true;
 }
 function pressMinus() {
     if (display.textContent==='ERROR'){pressClear()}
-    if (afterEquals) {//do nothing
+    if (afterEquals || afterOperand) {//do nothing
     }
     else if(firstNumber !== '') {
         secondNumber = display.textContent;
@@ -191,10 +204,11 @@ function pressMinus() {
     displayContent = '';
     operator = '-';
     afterEquals = false;
+    afterOperand = true;
 }
 function pressStar() {
     if (display.textContent==='ERROR'){pressClear()}
-    if (afterEquals) {//do nothing
+    if (afterEquals || afterOperand) {//do nothing
     }
     else if(firstNumber !== '') {
         secondNumber = display.textContent;
@@ -207,10 +221,11 @@ function pressStar() {
         displayContent = '';
     operator = '*';
     afterEquals = false;
+    afterOperand = true;
 }
 function pressSlash() {
     if (display.textContent==='ERROR'){pressClear()}
-    if (afterEquals) {//do nothing
+    if (afterEquals || afterOperand) {//do nothing
     }
     else if(firstNumber !== '') {
         secondNumber = display.textContent;
@@ -223,6 +238,7 @@ function pressSlash() {
     displayContent = '';
     operator = '/';
     afterEquals = false;
+    afterOperand = true;
 }
 
 function pressEquals() {
@@ -232,6 +248,7 @@ function pressEquals() {
     operate(operator, firstNumber, secondNumber);
     displayContent = '';
     afterEquals = true;
+    afterOperand = false;
     }
 
 //add listeners to operator buttons
