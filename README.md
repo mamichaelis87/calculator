@@ -1,12 +1,10 @@
 # calculator
 
-This is a project for The Odin Project.
+A simple calculator that can perform basic mathematical equations. Project assignment can be found here: https://www.theodinproject.com/lessons/foundations-calculator
 
-A simple calculator that can perform basic mathematical equations.
+See it live here: https://mamichaelis87.github.io/calculator/
 
-The project was practice for early javascript learning.
-
-Things to Finish:
-  add running log of pressed buttons
-  add title and description to site page
-  add more simple mathematical functions (sin/cos/tan)
+Features in development:
+  - running log of pressed buttons
+  - title and description to site page
+  - more simple mathematical functions (sin/cos/tan, etc.)
